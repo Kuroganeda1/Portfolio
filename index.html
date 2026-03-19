@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Titus Adesina — Portfolio</title>
+    <meta
+      name="description"
+      content="Titus Adesina — Philosophy and Computer Science at Towson. Projects: Pantry Tracker, 2D Java game, Spotify chatbot. Building tools that help."
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="intro-overlay" class="intro-overlay" aria-hidden="false">
+      <div class="intro-card-wrap">
+        <div class="intro-card-inner">
+          <div class="intro-card-back"></div>
+          <div class="intro-card-front">
+            <span class="intro-card-title">Titus Adesina</span>
+            <span class="intro-card-tagline"
+              >Philosophy + Computer Science</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#hero">Titus Adesina</a>
+        <nav class="nav" id="nav">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Toggle navigation"
+        >
+          ☰
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section id="hero" class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <h1 class="title"><span id="titleType">Hi — I’m Titus.</span></h1>
+            <p class="tagline">Philosophy + Computer Science</p>
+            <p class="lead">
+              I study how people reason and make decisions (philosophy) and
+              build things that put that to use (code). Right now I’m into tools
+              that make information and money basics easier to grasp—budgeting,
+              saving, and simple investing—without the jargon. I like clean UX,
+              clear logic, and systems that actually help.
+            </p>
+            <a class="cta" href="mailto:titus.adesina@gmail.com">Email me</a>
+          </div>
+          <div class="hero-art">
+            <div class="hero-photo-wrap">
+              <img
+                src="assets/titus.png"
+                alt="Titus Adesina"
+                class="hero-photo"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="container">
+          <h2 class="section-title">About</h2>
+          <p>
+            I’m at Towson studying philosophy and computer science. The
+            philosophy side sharpens how I think about arguments, bias, and
+            choice; the CS side is where I ship—React apps, Java projects, and
+            small APIs. I’ve built a pantry tracker to reduce food waste, a 2D
+            game from scratch in Java, and a Spotify chatbot so you can search
+            and control playback by typing. I care about ethical design and
+            building things that are useful, not just clever.
+          </p>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="container">
+          <h2 class="section-title">Selected Projects</h2>
+          <p class="section-intro">
+            Click a card to flip it and view the project.
+          </p>
+          <div class="grid" id="projectsGrid">
+            <article class="card reveal ygo" data-index="0">
+              <div class="ygo-card">
+                <div class="ygo-inner">
+                  <div class="ygo-front">
+                    <a
+                      class="project-link"
+                      href="https://pantry-tracker-ten-plum.vercel.app/"
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <img
+                        class="proj-img"
+                        src="assets/PantrySS.png"
+                        alt="Pantry Tracker"
+                      />
+                      <div class="proj-overlay">
+                        <h3>Pantry Tracker</h3>
+                        <div class="tags">
+                          <span class="tag">React</span
+                          ><span class="tag">Vercel</span>
+                        </div>
+                        <span class="view-btn">Live Demo</span>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="ygo-back" aria-hidden="true"></div>
+                </div>
+              </div>
+            </article>
+            <article class="card reveal ygo" data-index="1">
+              <div class="ygo-card">
+                <div class="ygo-inner">
+                  <div class="ygo-front">
+                    <div class="project-demo">
+                      <img
+                        class="proj-img"
+                        src="assets/2dgame.png"
+                        alt="2D Java Game — demo screenshot"
+                      />
+                      <div class="proj-overlay">
+                        <h3>2D Java Game</h3>
+                        <div class="tags">
+                          <span class="tag">Java</span
+                          ><span class="tag">GameDev</span>
+                        </div>
+                        <span class="demo-label">Click to view</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ygo-back" aria-hidden="true"></div>
+                </div>
+              </div>
+            </article>
+            <article class="card reveal ygo" data-index="2">
+              <div class="ygo-card">
+                <div class="ygo-inner">
+                  <div class="ygo-front">
+                    <div class="project-demo">
+                      <img
+                        class="proj-img"
+                        src="assets/SpotifyCustomerServiceCBSS.png"
+                        alt="Spotify Chatbot — demo screenshot"
+                      />
+                      <div class="proj-overlay">
+                        <h3>Spotify Chatbot</h3>
+                        <div class="tags">
+                          <span class="tag">Node.js</span
+                          ><span class="tag">API</span>
+                        </div>
+                        <span class="demo-label">Click to view</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ygo-back" aria-hidden="true"></div>
+                </div>
+              </div>
+            </article>
+            <article class="card reveal ygo" data-index="3">
+              <div class="ygo-card">
+                <div class="ygo-inner">
+                  <div class="ygo-front">
+                    <div class="project-demo">
+                      <video
+                        class="proj-video"
+                        src="assets/StudyWiseDemo.MP4"
+                        poster="assets/studywise.svg"
+                        muted
+                        loop
+                        playsinline
+                        preload="metadata"
+                        aria-label="StudyWise app screen recording"
+                      ></video>
+                      <div class="proj-overlay">
+                        <h3>StudyWise</h3>
+                        <div class="tags">
+                          <span class="tag">Mobile</span
+                          ><span class="tag">Demo</span>
+                        </div>
+                        <span class="demo-label">Click to view</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ygo-back" aria-hidden="true"></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact">
+        <div class="container">
+          <h2 class="section-title">Contact</h2>
+          <p>
+            Best way to reach me is
+            <a href="mailto:titus.adesina@gmail.com">titus.adesina@gmail.com</a
+            >. I’m open to project collabs, research ideas, or just a chat.
+          </p>
+          <a class="cta" href="mailto:titus.adesina@gmail.com">Email me</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <small
+          >© <span id="year"></span> Titus Adesina — Philosophy & Computer
+          Science</small
+        >
+      </div>
+    </footer>
+
+    <div id="screenshot-popup" class="popup" aria-hidden="true">
+      <div class="popup-backdrop"></div>
+      <div class="popup-content">
+        <img class="popup-img" src="" alt="" hidden />
+        <video
+          class="popup-video"
+          muted
+          loop
+          playsinline
+          controls
+          src=""
+          hidden
+        ></video>
+      </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+      // Intro: zoom card back in, flip to reveal page, then hide overlay
+      (function () {
+        var overlay = document.getElementById("intro-overlay");
+        var wrap = overlay && overlay.querySelector(".intro-card-wrap");
+        var inner = overlay && overlay.querySelector(".intro-card-inner");
+        if (!overlay || !inner) return;
+        function removeIntro() {
+          document.body.classList.add("intro-seen");
+          overlay.classList.add("intro-done");
+          overlay.setAttribute("aria-hidden", "true");
+          setTimeout(function () {
+            overlay.remove();
+          }, 600);
+        }
+        // After zoom, flip the card
+        overlay.addEventListener("animationend", function (e) {
+          if (e.target === wrap && e.animationName === "introZoom") {
+            inner.classList.add("flipped");
+          }
+        });
+        inner.addEventListener("transitionend", function (e) {
+          if (
+            e.target === inner &&
+            e.propertyName === "transform" &&
+            inner.classList.contains("flipped")
+          ) {
+            removeIntro();
+          }
+        });
+        // Fallback: remove overlay after total time in case events don't fire
+        setTimeout(removeIntro, 4500);
+      })();
+    </script>
+  </body>
+</html>

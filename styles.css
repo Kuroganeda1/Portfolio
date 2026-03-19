@@ -1,0 +1,153 @@
+/* Basic reset and variables */
+:root{
+  --bg:#0f172a;
+  --card:#0b1220;
+  --muted:#94a3b8;
+  --accent1:#6EE7B7;
+  --accent2:#3B82F6;
+  --glass: rgba(255,255,255,0.04);
+  --radius:14px;
+  --max-width:1100px;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{position:relative}
+body:not(.intro-seen) .site-header,
+body:not(.intro-seen) main,
+body:not(.intro-seen) .site-footer{visibility:hidden}
+body.intro-seen .site-header,
+body.intro-seen main,
+body.intro-seen .site-footer{visibility:visible}
+
+/* Intro: zoom in on card back, flip to reveal page */
+.intro-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#071033 0%,#071226 100%);transition:opacity .6s ease}
+.intro-overlay.intro-done{opacity:0;pointer-events:none}
+.intro-card-wrap{width:200px;height:290px;perspective:1200px;animation:introZoom 1.4s cubic-bezier(.2,.9,.3,1) forwards}
+@keyframes introZoom{0%{transform:scale(0.3);opacity:0}15%{opacity:1}100%{transform:scale(1.8);opacity:1}}
+.intro-card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.9,.25,1);transform:rotateY(0deg)}
+.intro-card-inner.flipped{transform:rotateY(180deg)}
+.intro-card-back,.intro-card-front{position:absolute;inset:0;border-radius:12px;overflow:hidden;backface-visibility:hidden;box-shadow:0 20px 50px rgba(0,0,0,0.5)}
+.intro-card-back{background:#2b0f08 url('assets/card-back.png') center/cover;border:6px solid rgba(0,0,0,0.35)}
+.intro-card-back::after{content:"";position:absolute;inset:8px;border-radius:8px;box-shadow:inset 0 0 40px rgba(0,0,0,0.4)}
+.intro-card-front{transform:rotateY(180deg);background:linear-gradient(180deg,#071033 0%,#071226 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:24px}
+.intro-card-title{color:var(--accent2);font-weight:700;font-size:1.25rem}
+.intro-card-tagline{color:var(--accent1);font-weight:600;font-size:0.9rem}
+
+body{
+  margin:0;
+  background: linear-gradient(180deg,#071033 0%, #071226 40%);
+  color:#e6eef8;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+}
+.container{width:90%;max-width:var(--max-width);margin:0 auto}
+
+/* Header */
+.site-header{position:sticky;top:0;backdrop-filter: blur(6px);background:linear-gradient(180deg,rgba(5,10,25,0.6),rgba(5,10,25,0.25));border-bottom:1px solid rgba(255,255,255,0.02);z-index:40}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand{font-weight:700;color:var(--accent2);text-decoration:none;font-size:1.05rem}
+.nav{display:flex;gap:18px}
+.nav a{color:var(--muted);text-decoration:none;font-weight:600}
+.nav a:hover{color:#fff}
+.nav-toggle{display:none;background:none;border:0;color:var(--muted);font-size:1.2rem}
+
+/* Hero */
+.hero{padding:72px 0 48px;position:relative;overflow:visible}
+.hero-inner{display:flex;gap:40px;align-items:center}
+.hero-copy{flex:1}
+.title{font-size:2.2rem;margin:0 0 10px}
+.tagline{color:var(--accent1);font-weight:600;margin:0 0 12px}
+.lead{color:var(--muted);max-width:60ch}
+.cta{display:inline-block;margin-top:16px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#01203a;padding:10px 16px;border-radius:10px;font-weight:700;text-decoration:none}
+
+.hero-art{width:320px;display:flex;align-items:center;justify-content:center}
+.hero-photo-wrap{width:260px;height:260px;border-radius:var(--radius);overflow:hidden;box-shadow:0 12px 36px rgba(2,6,23,0.5);border:1px solid rgba(255,255,255,0.06)}
+.hero-photo{width:100%;height:100%;object-fit:cover;display:block}
+.card{width:260px;height:260px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(2,6,23,0.6);transform:translateY(0);transition:transform .6s cubic-bezier(.2,.9,.3,1)}
+.blob{width:220px;height:220px;filter:drop-shadow(0 12px 30px rgba(59,130,246,0.18));animation:blob 8s infinite alternate ease-in-out}
+@keyframes blob{from{transform:translateY(-6px) scale(1)}to{transform:translateY(6px) scale(1.03)}}
+
+/* Sections */
+.section{padding:56px 0}
+.section-title{font-size:1.25rem;margin:0 0 18px;color:#e8f1ff}
+.section-intro{color:var(--muted);margin:0 0 24px;max-width:50ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;justify-items:center}
+.card.reveal{padding:0;background:transparent;border-radius:0;border:none;transition:transform .5s ease,opacity .5s ease;opacity:0;transform:translateY(14px);width:100%;max-width:220px}
+.card.reveal.ygo{display:block}
+.card.reveal.show{opacity:1;transform:none}
+.card.reveal h3{margin:0 0 8px}
+.card.reveal p{margin:0;color:var(--muted)}
+
+/* Contact */
+.contact .cta{margin-top:12px}
+
+/* Footer */
+.site-footer{padding:22px 0;border-top:1px solid rgba(255,255,255,0.02);color:var(--muted);font-size:.9rem}
+
+/* Responsive */
+@media (max-width:900px){
+  .hero-inner{flex-direction:column-reverse;text-align:center}
+  .hero-art{width:100%;display:flex;justify-content:center}
+  .nav{display:none}
+  .nav-toggle{display:block}
+}
+
+/* Smooth scroll */
+html{scroll-behavior:smooth}
+
+/* utility */
+small{font-size:.85rem}
+
+/* Yu-Gi-Oh style card (trap/back) */
+.ygo-card{width:220px;height:320px;margin:0 auto;perspective:1200px}
+.ygo-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.9,.25,1)}
+.ygo-front,.ygo-back{position:absolute;inset:0;border-radius:12px;overflow:hidden;backface-visibility:hidden;box-shadow:0 12px 30px rgba(2,6,23,0.6)}
+.ygo-back{display:block}
+.ygo-front{display:block;padding:0;background:#0b1220;color:#fff;pointer-events:none}
+.ygo-inner.flipped .ygo-front{pointer-events:auto}
+.ygo-front h3{margin:0 0 8px}
+.ygo-front p{margin:0;color:var(--muted);font-size:.95rem}
+.ygo-back{transform:rotateY(180deg);background-color:#2b0f08;background-size:cover;background-position:center;border:6px solid rgba(0,0,0,0.35)}
+.ygo-back::after{content:"";position:absolute;inset:8px;border-radius:8px;box-shadow:inset 0 0 40px rgba(0,0,0,0.45)}
+
+/* Yu-Gi-Oh trap card back (face-down by default) */
+.ygo-back{background-image:url('assets/card-back2.png')}
+.ygo-inner{transform:rotateY(180deg)}
+.ygo-inner.flipped{transform:rotateY(0deg)}
+
+/* Project front: link (live) or demo (screenshot only) */
+.project-link,.project-demo{display:block;width:100%;height:100%;position:relative;text-decoration:none;color:inherit}
+.proj-img,.proj-video{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.proj-video{display:block}
+.proj-overlay{position:relative;z-index:4;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;gap:6px;width:100%;height:100%;min-height:0;padding:12px;background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 60%)}
+.proj-overlay h3{margin:0;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,0.5);font-size:1rem}
+.proj-overlay .tags{margin:0}
+.view-btn{display:inline-block;background:rgba(255,255,255,0.95);color:#0b1220;padding:6px 10px;border-radius:6px;font-weight:700;font-size:0.8rem}
+.demo-label{font-size:0.75rem;color:var(--muted)}
+
+/* flipped state: .flipped = reveal front (project) */
+
+/* Reveal/flip state */
+.card.reveal.show{opacity:1;transform:none}
+
+/* hover: slight tilt when face-down (trap card feel) */
+.ygo-card:hover .ygo-inner:not(.flipped){transform:rotateY(178deg) rotateY(-3deg)}
+.ygo-card:hover .ygo-inner.flipped{transform:rotateY(0deg) rotateY(-2deg)}
+
+@media (max-width:520px){
+  .ygo-card{width:180px;height:260px}
+}
+
+/* tags */
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{background:rgba(0,0,0,0.45);padding:4px 8px;border-radius:999px;color:#fff;font-size:0.72rem;border:1px solid rgba(255,255,255,0.04)}
+
+/* Screenshot / demo popup */
+.popup{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .2s, visibility .2s}
+.popup.is-open{opacity:1;visibility:visible}
+.popup-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.85);cursor:pointer}
+.popup-content{position:relative;z-index:1;max-width:90vw;max-height:85vh;border-radius:12px;overflow:hidden;box-shadow:0 24px 48px rgba(0,0,0,0.5)}
+.popup-content .popup-img,.popup-content .popup-video{display:block;max-width:100%;max-height:85vh;width:auto;height:auto;object-fit:contain}
+.popup-content .popup-img[hidden],.popup-content .popup-video[hidden]{display:none}

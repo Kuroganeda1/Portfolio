@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+    <rect width="100%" height="100%" fill="#0b3a2b" />
+    <text x="50%" y="45%" font-family="Inter, sans-serif" font-size="36" fill="#e6eef8"
+        text-anchor="middle">2D Java Game (WIP)</text>
+    <text x="50%" y="55%" font-family="Inter, sans-serif" font-size="18" fill="#94a3b8"
+        text-anchor="middle">Replace with your screenshot</text>
+</svg>
