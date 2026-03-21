@@ -243,7 +243,46 @@
         ></video>
       </div>
     </div>
+
+    <!-- Compact bottom-right vinyl player (image + playlist in music-player.js) -->
+    <aside
+      class="vinyl-player"
+      id="vinyl-player"
+      aria-label="Music player"
+    >
+      <p class="vinyl-player__track-title" id="vinyl-track-title">
+        Tobu - Candyland
+      </p>
+      <div class="vinyl-player__stage">
+        <div class="vinyl-player__glow" aria-hidden="true"></div>
+        <div class="vinyl-player__disc-shell">
+          <div class="vinyl-player__img-backdrop" aria-hidden="true"></div>
+          <button
+            type="button"
+            class="vinyl-player__disc-btn"
+            id="vinyl-play-toggle"
+            aria-pressed="false"
+            aria-label="Play or pause music"
+          >
+            <span class="vinyl-player__record-spin">
+              <img
+                class="vinyl-player__record-img"
+                src="assets/Tije-record.png"
+                alt=""
+                width="128"
+                height="128"
+                decoding="async"
+              />
+            </span>
+            <span class="vinyl-player__play-hint" aria-hidden="true">▶</span>
+          </button>
+        </div>
+      </div>
+      <audio id="vinyl-audio" preload="metadata" loop hidden></audio>
+    </aside>
+
     <script src="script.js"></script>
+    <script src="music-player.js"></script>
     <script>
       // Intro: zoom card back in, flip to reveal page, then hide overlay
       (function () {
