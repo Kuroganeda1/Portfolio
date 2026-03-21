@@ -61,6 +61,9 @@ body{
 .tagline{color:var(--accent1);font-weight:600;margin:0 0 12px}
 .lead{color:var(--muted);max-width:60ch}
 .cta{display:inline-block;margin-top:16px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#01203a;padding:10px 16px;border-radius:10px;font-weight:700;text-decoration:none}
+button.cta{font:inherit;cursor:pointer;border:0;text-align:center}
+.contact-email-link{color:var(--accent2);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(59,130,246,0.35)}
+.contact-email-link:hover{color:var(--accent1);border-bottom-color:rgba(110,231,183,0.5)}
 
 .hero-art{width:320px;display:flex;align-items:center;justify-content:center}
 .hero-photo-wrap{width:260px;height:260px;border-radius:var(--radius);overflow:hidden;box-shadow:0 12px 36px rgba(2,6,23,0.5);border:1px solid rgba(255,255,255,0.06)}
@@ -151,6 +154,29 @@ small{font-size:.85rem}
 .popup-content{position:relative;z-index:1;max-width:90vw;max-height:85vh;border-radius:12px;overflow:hidden;box-shadow:0 24px 48px rgba(0,0,0,0.5)}
 .popup-content .popup-img,.popup-content .popup-video{display:block;max-width:100%;max-height:85vh;width:auto;height:auto;object-fit:contain}
 .popup-content .popup-img[hidden],.popup-content .popup-video[hidden]{display:none}
+
+/* EmailJS contact modal */
+.email-modal{position:fixed;inset:0;z-index:110;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s ease}
+.email-modal.is-open{opacity:1;visibility:visible}
+.email-modal__backdrop{position:absolute;inset:0;background:rgba(2,6,23,0.82);backdrop-filter:blur(4px);cursor:pointer}
+.email-modal__dialog{position:relative;z-index:1;width:100%;max-width:420px;background:linear-gradient(180deg,rgba(15,23,42,0.98),rgba(5,10,25,0.98));border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);box-shadow:0 24px 64px rgba(0,0,0,0.55);padding:22px 22px 18px}
+.email-modal__head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.email-modal__title{margin:0;font-size:1.15rem;color:#e8f1ff}
+.email-modal__x{width:36px;height:36px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.06);color:var(--muted);font-size:1.5rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.email-modal__x:hover{color:#fff;border-color:rgba(110,231,183,0.35)}
+.email-modal__hint{margin:0 0 18px;font-size:0.88rem;color:var(--muted);line-height:1.45}
+.email-modal__addr{color:var(--accent2);font-weight:600}
+.email-form{display:flex;flex-direction:column;gap:14px}
+.email-form__label{display:flex;flex-direction:column;gap:6px}
+.email-form__ltext{font-size:0.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em}
+.email-form__input,.email-form__textarea{width:100%;box-sizing:border-box;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.1);background:rgba(0,0,0,0.25);color:#e6eef8;font:inherit}
+.email-form__input:focus,.email-form__textarea:focus{outline:none;border-color:rgba(110,231,183,0.45);box-shadow:0 0 0 2px rgba(59,130,246,0.15)}
+.email-form__textarea{resize:vertical;min-height:100px}
+.email-form__actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:4px}
+.email-form__submit{margin-top:0}
+.email-form__cancel{background:none;border:0;color:var(--muted);font:inherit;font-weight:600;cursor:pointer;padding:8px 0}
+.email-form__cancel:hover{color:#fff}
+.email-form__status{min-height:1.25em;margin:14px 0 0;font-size:0.88rem;font-weight:600;color:var(--accent1)}
 
 /* Compact vinyl player — bottom-right (Tije-record.png + music-player.js) */
 .vinyl-player{

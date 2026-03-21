@@ -60,7 +60,7 @@
               saving, and simple investing—without the jargon. I like clean UX,
               clear logic, and systems that actually help.
             </p>
-            <a class="cta" href="mailto:titus.adesina@gmail.com">Email me</a>
+            <button type="button" class="cta js-open-email">Email me</button>
           </div>
           <div class="hero-art">
             <div class="hero-photo-wrap">
@@ -211,10 +211,11 @@
           <h2 class="section-title">Contact</h2>
           <p>
             Best way to reach me is
-            <a href="mailto:titus.adesina@gmail.com">titus.adesina@gmail.com</a
+            <a href="#" class="contact-email-link js-open-email"
+              >titus.adesina@gmail.com</a
             >. I’m open to project collabs, research ideas, or just a chat.
           </p>
-          <a class="cta" href="mailto:titus.adesina@gmail.com">Email me</a>
+          <button type="button" class="cta js-open-email">Email me</button>
         </div>
       </section>
     </main>
@@ -227,6 +228,81 @@
         >
       </div>
     </footer>
+
+    <!-- EmailJS contact modal (config: email-contact.js) -->
+    <div
+      id="email-modal"
+      class="email-modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="email-modal-title"
+      aria-modal="true"
+    >
+      <div
+        class="email-modal__backdrop"
+        data-email-modal-close
+        aria-hidden="true"
+      ></div>
+      <div class="email-modal__dialog">
+        <div class="email-modal__head">
+          <h2 id="email-modal-title" class="email-modal__title">Email me</h2>
+          <button
+            type="button"
+            class="email-modal__x"
+            data-email-modal-close
+            aria-label="Close"
+          >
+            ×
+          </button>
+        </div>
+        <p class="email-modal__hint">
+          Send a note from the site. I’ll reply at
+          <span class="email-modal__addr">titus.adesina@gmail.com</span>.
+        </p>
+        <form id="email-contact-form" class="email-form" novalidate>
+          <label class="email-form__label">
+            <span class="email-form__ltext">Your name</span>
+            <input
+              class="email-form__input"
+              type="text"
+              name="from_name"
+              required
+              autocomplete="name"
+            />
+          </label>
+          <label class="email-form__label">
+            <span class="email-form__ltext">Your email</span>
+            <input
+              class="email-form__input"
+              type="email"
+              name="from_email"
+              required
+              autocomplete="email"
+            />
+          </label>
+          <label class="email-form__label">
+            <span class="email-form__ltext">Message</span>
+            <textarea
+              class="email-form__textarea"
+              name="message"
+              rows="4"
+              required
+            ></textarea>
+          </label>
+          <div class="email-form__actions">
+            <button type="submit" class="email-form__submit cta">Send</button>
+            <button
+              type="button"
+              class="email-form__cancel"
+              data-email-modal-close
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+        <p id="email-form-status" class="email-form__status" role="status"></p>
+      </div>
+    </div>
 
     <div id="screenshot-popup" class="popup" aria-hidden="true">
       <div class="popup-backdrop"></div>
@@ -281,8 +357,10 @@
       <audio id="vinyl-audio" preload="metadata" loop hidden></audio>
     </aside>
 
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="script.js"></script>
     <script src="music-player.js"></script>
+    <script src="email-contact.js"></script>
     <script>
       // Intro: zoom card back in, flip to reveal page, then hide overlay
       (function () {
