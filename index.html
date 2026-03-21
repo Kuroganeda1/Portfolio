@@ -14,6 +14,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="ygo-spell-draw.css" />
   </head>
   <body>
     <div id="intro-overlay" class="intro-overlay" aria-hidden="false">
@@ -55,10 +56,9 @@
             <p class="tagline">Philosophy + Computer Science</p>
             <p class="lead">
               I study how people reason and make decisions (philosophy) and
-               build applications from curiosity (computer science). As of curren
-              that make information and money basics easier to grasp—budgeting,
-              saving, and simple investing—without the jargon. I like clean UX,
-              clear logic, and systems that actually help.
+               build applications from curiosity (computer science). I have learned the value of strong leadership, collaboration, and flexibility through programs such as Google CSSI, Code Next, AllStarCode, and NAF. 
+               I am interested in the areas where technology, finance, and human behavior overlap.
+                I hope to create solutions not only useful, but also thoughtfully designed, accessible, and effective.
             </p>
             <button type="button" class="cta js-open-email">Email me</button>
           </div>
@@ -74,24 +74,126 @@
         </div>
       </section>
 
-      <section id="about" class="section">
+      <section
+        id="about"
+        class="section ygo-spell-section"
+        aria-labelledby="about-heading"
+      >
         <div class="container">
-          <h2 class="section-title">About</h2>
-          <p>
-            I’m at Towson studying philosophy and computer science. The
-            philosophy side sharpens how I think about arguments, bias, and
-            choice; the CS side is where I ship—React apps, Java projects, and
-            small APIs. I’ve built a pantry tracker to reduce food waste, a 2D
-            game from scratch in Java, and a Spotify chatbot so you can search
-            and control playback by typing. I care about ethical design and
-            building things that are useful, not just clever.
+          <h2 class="section-title" id="about-heading">About</h2>
+          <p class="ygo-spell-intro">
+            Click the deck — bio cards deal beside it, then the spell card flips to a
+            <strong>GIPHY</strong> clip. After a moment it fades so you can read the cards.
+            Press <kbd>Esc</kbd> or click the dimmed area to skip ahead; click the deck again to
+            stack and replay.
           </p>
+          <div class="ygo-spell-field" id="ygo-spell-field">
+            <div class="ygo-deck-column">
+              <p class="ygo-deck-label" id="ygo-deck-label">Main deck</p>
+              <button
+                type="button"
+                class="ygo-deck-btn"
+                id="ygo-deck-btn"
+                aria-labelledby="ygo-deck-label"
+                aria-describedby="about-heading"
+              >
+                <img
+                  class="ygo-deck-img"
+                  id="ygo-deck-img"
+                  src="assets/Deck.webp"
+                  alt="Deck — click to draw cards and play spell animation"
+                  width="140"
+                  height="140"
+                  decoding="async"
+                />
+              </button>
+            </div>
+            <div class="ygo-hand" id="ygo-hand" aria-hidden="true">
+              <article
+                class="ygo-info-card ygo-info-card--monster"
+                data-ygo-info-card
+              >
+                <header class="ygo-info-card__top">
+                  <span class="ygo-info-card__type">Monster</span>
+                  <h3 class="ygo-info-card__name">Technical foundation</h3>
+                </header>
+                <div class="ygo-info-card__art" aria-hidden="true"></div>
+                <div class="ygo-info-card__text">
+                  <p>
+                    Through high school and college I’ve built strong programming skills:
+                    <strong>HTML, CSS, JavaScript, Python, React, React Native, Java</strong>,
+                    object-oriented programming, and mobile app development—starting early in
+                    high school. Along the way: practical experience in web development, mobile
+                    apps, cybersecurity, and more through coursework and the
+                    <strong>Towson University cybersecurity club</strong>.
+                  </p>
+                </div>
+              </article>
+              <article
+                class="ygo-info-card ygo-info-card--spell"
+                data-ygo-info-card
+              >
+                <header class="ygo-info-card__top">
+                  <span class="ygo-info-card__type">Spell</span>
+                  <h3 class="ygo-info-card__name">Internships &amp; programs</h3>
+                </header>
+                <div class="ygo-info-card__text">
+                  <p>
+                    Beyond the classroom: competitive internships and programs with
+                    <strong>Google’s CSSI</strong>, <strong>Code Next</strong>,
+                    <strong>First Generation Investors</strong>, <strong>All Star Code</strong>,
+                    and more. I’ve grown not only technically but in
+                    <strong>collaboration, flexibility, and critical thinking</strong>.
+                  </p>
+                </div>
+              </article>
+              <article
+                class="ygo-info-card ygo-info-card--trap"
+                data-ygo-info-card
+              >
+                <header class="ygo-info-card__top">
+                  <span class="ygo-info-card__type">Trap</span>
+                  <h3 class="ygo-info-card__name">Leadership</h3>
+                </header>
+                <div class="ygo-info-card__text">
+                  <p>
+                    <strong>Team facilitator</strong> with the
+                    <strong>RTX × NAF Future Ready Engineers</strong> program—guiding teams
+                    through project development. It was an honor to be asked back for a
+                    <strong>second term</strong>, reflecting a real commitment to mentorship
+                    and leadership in a technology context.
+                  </p>
+                </div>
+              </article>
+              <article
+                class="ygo-info-card ygo-info-card--spell"
+                data-ygo-info-card
+              >
+                <header class="ygo-info-card__top">
+                  <span class="ygo-info-card__type">Spell</span>
+                  <h3 class="ygo-info-card__name">Philosophy + path forward</h3>
+                </header>
+                <div class="ygo-info-card__text">
+                  <p>
+                    I’m pursuing a degree in <strong>Philosophy</strong> while keeping a solid
+                    <strong>computer science</strong> foundation—sharpening analytical thinking,
+                    problem-solving, and how technology sits in society. I’m growing as both a
+                    developer and a thinker, focused on <strong>impactful, user-centric</strong>
+                    solutions while continuing to level up in software and new technologies.
+                  </p>
+                  <p>
+                    <a href="mailto:titus.adesina@gmail.com">titus.adesina@gmail.com</a>
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
         </div>
       </section>
 
       <section id="projects" class="section">
         <div class="container">
-          <h2 class="section-title">Selected Projects</h2>
+          <h2 class="section-title">Projects</h2>
           <p class="section-intro">
             Click a card to flip it and view the project.
           </p>
@@ -220,10 +322,109 @@
       </section>
     </main>
 
+    <!-- Yu-Gi-Oh–style draw + spell flip (GIPHY embed) — ygo-spell-draw.js -->
+    <div
+      class="ygo-spell-overlay"
+      id="ygo-spell-overlay"
+      aria-hidden="true"
+    >
+      <div class="ygo-spell-dim" aria-hidden="true"></div>
+      <div
+        class="ygo-spell-flash"
+        id="ygo-spell-flash"
+        aria-hidden="true"
+      ></div>
+      <div
+        class="ygo-spell-burst"
+        id="ygo-spell-burst"
+        aria-hidden="true"
+      ></div>
+      <div class="ygo-spell-aura" aria-hidden="true"></div>
+      <div class="ygo-deal-layer" id="ygo-deal-layer" aria-hidden="true"></div>
+      <button
+        type="button"
+        class="ygo-overlay-deck-return"
+        id="ygo-overlay-deck-return"
+        hidden
+        aria-label="Close spell animation and return to deck"
+      >
+        <img
+          src="assets/Deck.webp"
+          alt=""
+          width="72"
+          height="72"
+          decoding="async"
+        />
+        <span class="ygo-overlay-deck-return__label">To deck</span>
+      </button>
+      <div class="ygo-focus-anchor" id="ygo-focus-anchor">
+        <!-- perspective lives INSIDE the flyer so parent can use left/top flight
+             without transform — transformed ancestors flatten 3D and hide the flip. -->
+        <div class="ygo-focus-perspective">
+          <div class="ygo-flip-card" id="ygo-flip-card">
+            <div class="ygo-flip-face ygo-flip-face--back" aria-hidden="true"></div>
+            <div class="ygo-flip-face ygo-flip-face--front">
+              <div class="ygo-spell-embed" id="ygo-spell-embed">
+                <div class="ygo-spell-embed__frame">
+                  <iframe
+                    title="Spell activation — Tom and Jerry (via GIPHY)"
+                    src="https://giphy.com/embed/vPuszmHgeWnIhTkSr5"
+                    width="100%"
+                    height="100%"
+                    class="giphy-embed"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                <p class="ygo-spell-embed__credit">
+                  <a
+                    href="https://giphy.com/gifs/HBOMax-tom-and-jerry-hbomax-n-vPuszmHgeWnIhTkSr5"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >via GIPHY</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="ygo-spell-msg"
+        id="ygo-spell-msg"
+        role="status"
+        aria-live="polite"
+        hidden
+      >
+        <p class="ygo-spell-msg__text">
+          Thanks for checking my bio — I appreciate you taking the time to get to know me.
+        </p>
+        <div class="ygo-spell-msg__giphy">
+          <div class="ygo-spell-msg__giphy-ratio">
+            <iframe
+              title="Thank you — Tom and Jerry (via GIPHY)"
+              src="https://giphy.com/embed/vPuszmHgeWnIhTkSr5"
+              width="100%"
+              height="100%"
+              class="giphy-embed"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+        <p class="ygo-spell-msg__credit">
+          <a
+            href="https://giphy.com/gifs/HBOMax-tom-and-jerry-hbomax-n-vPuszmHgeWnIhTkSr5"
+            target="_blank"
+            rel="noopener noreferrer"
+            >via GIPHY</a
+          >
+        </p>
+      </div>
+    </div>
+
     <footer class="site-footer">
       <div class="container">
         <small
-          >© <span id="year"></span> Titus Adesina — Philosophy & Computer
+          >© <span id="year"></span> Titus Adesina — Philosophy &amp; Computer
           Science</small
         >
       </div>
@@ -345,8 +546,8 @@
                 class="vinyl-player__record-img"
                 src="assets/Tije-record.png"
                 alt=""
-                width="128"
-                height="128"
+                width="96"
+                height="96"
                 decoding="async"
               />
             </span>
@@ -361,6 +562,7 @@
     <script src="script.js"></script>
     <script src="music-player.js"></script>
     <script src="email-contact.js"></script>
+    <script src="ygo-spell-draw.js"></script>
     <script>
       // Intro: zoom card back in, flip to reveal page, then hide overlay
       (function () {

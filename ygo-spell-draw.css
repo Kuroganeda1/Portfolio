@@ -1,0 +1,724 @@
+/**
+ * Yu-Gi-Oh style: deck → deal burst → 3D flip → GIPHY embed (spell front) + message
+ * Assets: Deck.webp, cardback.png
+ */
+
+:root {
+  --ygo-cardback-url: url("assets/cardback.png");
+}
+
+.ygo-spell-section {
+  position: relative;
+}
+
+.ygo-spell-section .ygo-spell-intro {
+  margin: 0 0 8px;
+  max-width: 48ch;
+  font-size: 0.9rem;
+  color: var(--muted, #94a3b8);
+  line-height: 1.5;
+}
+
+.ygo-spell-intro kbd {
+  font-size: 0.85em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  font-family: ui-monospace, monospace;
+}
+
+/* ----- Deck control (in About — profile / bio feel) ----- */
+/* ----- Deck + info cards row ----- */
+.ygo-spell-field {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: clamp(16px, 4vw, 28px);
+  position: relative;
+}
+
+.ygo-deck-column {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  z-index: 4;
+}
+
+.ygo-hand {
+  flex: 1 1 220px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: stretch;
+  align-content: flex-start;
+  min-height: 120px;
+  position: relative;
+  z-index: 3;
+}
+
+/* Hide hand while measuring stack offsets (one frame) */
+.ygo-hand--init {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ygo-info-card--no-trans {
+  transition: none !important;
+}
+
+/* Yu-Gi-Oh–inspired mini “cards” (resume / bio slices) */
+.ygo-info-card {
+  --tx: 0px;
+  --ty: 0px;
+  --s: 0.34;
+  width: min(100%, 200px);
+  min-height: 168px;
+  padding: 0;
+  margin: 0;
+  border-radius: 8px;
+  border: 3px solid;
+  background: linear-gradient(
+    165deg,
+    rgba(15, 23, 42, 0.98) 0%,
+    rgba(3, 7, 18, 0.99) 100%
+  );
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.45s ease, box-shadow 0.35s ease;
+  transform-origin: center center;
+}
+
+.ygo-info-card--stacked {
+  transform: translate(var(--tx), var(--ty)) scale(var(--s));
+  opacity: 0.92;
+  pointer-events: none;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.ygo-info-card:not(.ygo-info-card--stacked) {
+  transform: translate(0, 0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ygo-info-card--monster {
+  border-color: rgba(250, 204, 21, 0.75);
+}
+
+.ygo-info-card--spell {
+  border-color: rgba(45, 212, 191, 0.75);
+}
+
+.ygo-info-card--trap {
+  border-color: rgba(192, 132, 252, 0.8);
+}
+
+.ygo-info-card__top {
+  padding: 8px 10px 6px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.ygo-info-card__type {
+  display: block;
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  margin-bottom: 2px;
+}
+
+.ygo-info-card__name {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+.ygo-info-card__art {
+  height: 48px;
+  background: linear-gradient(
+    90deg,
+    rgba(59, 130, 246, 0.15),
+    rgba(110, 231, 183, 0.12)
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ygo-info-card--spell .ygo-info-card__art,
+.ygo-info-card--trap .ygo-info-card__art {
+  display: none;
+}
+
+.ygo-info-card__text {
+  padding: 8px 10px 10px;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: #cbd5e1;
+  flex: 1;
+}
+
+.ygo-info-card__text p {
+  margin: 0;
+}
+
+.ygo-info-card__text ul {
+  margin: 0;
+  padding-left: 1.1em;
+}
+
+.ygo-info-card__text li {
+  margin-bottom: 0.35em;
+}
+
+.ygo-info-card__text a {
+  color: #6ee7b7;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ygo-info-card__text strong {
+  color: #f1f5f9;
+}
+
+.ygo-deck-label {
+  margin: 0;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent1, #6ee7b7);
+}
+
+.ygo-deck-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: transform 0.28s ease, filter 0.28s ease;
+  line-height: 0;
+}
+
+.ygo-deck-btn:hover:not(:disabled) {
+  transform: scale(1.06) translateY(-2px);
+  filter: drop-shadow(0 10px 28px rgba(110, 231, 183, 0.35));
+}
+
+.ygo-deck-btn:focus-visible {
+  outline: 2px solid rgba(110, 231, 183, 0.75);
+  outline-offset: 4px;
+}
+
+.ygo-deck-btn:disabled {
+  cursor: wait;
+  opacity: 0.55;
+  transform: none;
+}
+
+.ygo-deck-img {
+  display: block;
+  width: min(132px, 32vw);
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Corner control: return spell + dismiss overlay (shown when sequence is done) */
+.ygo-overlay-deck-return {
+  position: fixed;
+  left: max(16px, env(safe-area-inset-left));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  z-index: 12;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  background: rgba(15, 23, 42, 0.92);
+  border: 2px solid rgba(110, 231, 183, 0.45);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+  color: #e2e8f0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.ygo-overlay-deck-return:hover {
+  transform: scale(1.04);
+  border-color: rgba(110, 231, 183, 0.85);
+  box-shadow: 0 14px 44px rgba(110, 231, 183, 0.2);
+}
+
+.ygo-overlay-deck-return:focus-visible {
+  outline: 2px solid rgba(110, 231, 183, 0.9);
+  outline-offset: 3px;
+}
+
+.ygo-overlay-deck-return img {
+  display: block;
+  border-radius: 8px;
+  width: 56px;
+  height: auto;
+}
+
+.ygo-overlay-deck-return__label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ygo-overlay-deck-return[hidden] {
+  display: none !important;
+}
+
+/* ----- Fullscreen overlay (draw / focus / flip) ----- */
+.ygo-spell-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 160;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.ygo-spell-overlay.is-on {
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Spell + dim fade out so the About bio hand is visible underneath */
+.ygo-spell-overlay.is-dismissing .ygo-spell-dim {
+  opacity: 0;
+  transition: opacity 0.52s ease;
+  pointer-events: none;
+}
+
+.ygo-spell-overlay.is-dismissing .ygo-focus-anchor {
+  opacity: 0 !important;
+  transition: opacity 0.48s ease;
+  pointer-events: none;
+}
+
+.ygo-spell-overlay.is-dismissing .ygo-spell-msg {
+  opacity: 0 !important;
+  transform: translateY(10px);
+  transition: opacity 0.38s ease, transform 0.38s ease;
+}
+
+.ygo-spell-overlay.is-dismissing .ygo-spell-burst,
+.ygo-spell-overlay.is-dismissing .ygo-spell-aura,
+.ygo-spell-overlay.is-dismissing .ygo-spell-flash {
+  opacity: 0 !important;
+  animation: none !important;
+}
+
+.ygo-spell-overlay.is-dismissing .ygo-overlay-deck-return {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Subtle emphasis on bio row after spell clears */
+body.ygo-bio-reveal .ygo-hand {
+  filter: drop-shadow(0 0 20px rgba(110, 231, 183, 0.12));
+}
+
+.ygo-spell-dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(4px);
+}
+
+/* Optional soft full-screen flash on spell resolve */
+.ygo-spell-flash {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ygo-spell-flash.is-active {
+  animation: ygo-screen-flash 0.38s ease-out forwards;
+}
+
+@keyframes ygo-screen-flash {
+  0% {
+    opacity: 0;
+  }
+  22% {
+    opacity: 0.14;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Radial burst on spell activation */
+.ygo-spell-burst {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 140vmax;
+  height: 140vmax;
+  margin: -70vmax 0 0 -70vmax;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(110, 231, 183, 0.12) 18%,
+    transparent 55%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.3);
+}
+
+.ygo-spell-burst.is-active {
+  animation: ygo-burst 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes ygo-burst {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* Glow behind focus card */
+.ygo-spell-aura {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: min(100vw, 480px);
+  height: min(130vw, 620px);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse 55% 50% at 50% 50%,
+    rgba(110, 231, 183, 0.28) 0%,
+    rgba(59, 130, 246, 0.1) 42%,
+    transparent 68%
+  );
+  filter: blur(36px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.ygo-spell-overlay.spell-active .ygo-spell-aura {
+  opacity: 1;
+  animation: ygo-aura-pulse 2.2s ease-in-out infinite;
+  /* Spell-card emerald (#1d8364) undertone */
+  background: radial-gradient(
+    ellipse 55% 50% at 50% 50%,
+    rgba(29, 131, 100, 0.32) 0%,
+    rgba(110, 231, 183, 0.14) 42%,
+    transparent 68%
+  );
+}
+
+@keyframes ygo-aura-pulse {
+  0%,
+  100% {
+    opacity: 0.88;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+
+/* Quick “dealing” cards */
+.ygo-deal-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ygo-deal-card {
+  position: fixed;
+  width: 56px;
+  height: 82px;
+  border-radius: 6px;
+  background: var(--ygo-cardback-url) center / cover no-repeat;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  z-index: 3;
+  opacity: 1;
+  transition: transform 0.38s cubic-bezier(0.25, 0.85, 0.3, 1), opacity 0.3s ease;
+}
+
+.ygo-deal-card.is-dealt {
+  /* transform set inline per card */
+}
+
+.ygo-deal-card.is-fade {
+  opacity: 0;
+}
+
+/* ----- Focus card: flight uses left/top on .ygo-focus-anchor (no transform)
+     so 3D flip below keeps preserve-3d and Respect Spell stays visible. ----- */
+.ygo-focus-anchor {
+  position: fixed;
+  z-index: 4;
+  width: 220px;
+  height: 320px;
+  margin: 0;
+  left: 0;
+  top: 0;
+  flex-shrink: 0;
+  opacity: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.ygo-focus-perspective {
+  width: 100%;
+  height: 100%;
+  perspective: 1600px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+}
+
+.ygo-flip-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 10px;
+  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.55));
+}
+
+.ygo-flip-card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.ygo-flip-card.spell-pulse {
+  animation: ygo-card-pulse 0.65s ease-out 1;
+}
+
+@keyframes ygo-card-pulse {
+  0% {
+    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.55))
+      drop-shadow(0 0 0 transparent);
+  }
+  45% {
+    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.55))
+      drop-shadow(0 0 32px rgba(110, 231, 183, 0.65));
+  }
+  100% {
+    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.55))
+      drop-shadow(0 0 14px rgba(59, 130, 246, 0.35));
+  }
+}
+
+.ygo-flip-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background-size: cover;
+  background-position: center;
+  border: 3px solid rgba(15, 15, 25, 0.95);
+  overflow: hidden;
+}
+
+.ygo-flip-face--back {
+  transform: rotateY(0deg) translateZ(2px);
+}
+
+.ygo-flip-face--front {
+  transform: rotateY(180deg) translateZ(2px);
+  border-color: rgba(45, 212, 191, 0.55);
+}
+
+/* GIPHY embed fills the spell card front (after flip) */
+.ygo-spell-embed {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: #0a0a0f;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.ygo-spell-embed__frame {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
+.ygo-spell-embed__frame iframe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.ygo-spell-embed__credit {
+  margin: 0;
+  padding: 5px 8px;
+  font-size: 0.58rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.55);
+  flex-shrink: 0;
+}
+
+.ygo-spell-embed__credit a {
+  color: #94a3b8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ygo-spell-embed__credit a:hover {
+  color: #cbd5e1;
+}
+
+.ygo-flip-card.is-flipped .ygo-spell-embed {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ----- Thank-you block: quote + GIPHY embed ----- */
+.ygo-spell-msg {
+  position: relative;
+  z-index: 5;
+  max-width: min(92vw, 400px);
+  margin: 20px 0 0;
+  padding: 14px 18px 12px;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.94) 0%,
+    rgba(3, 7, 18, 0.97) 100%
+  );
+  border: 2px solid rgba(250, 204, 21, 0.5);
+  border-radius: 4px;
+  box-shadow: 0 0 36px rgba(59, 130, 246, 0.22);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.55s ease 0.1s, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.1s;
+}
+
+.ygo-spell-msg__text {
+  margin: 0 0 12px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(0.88rem, 2.4vw, 1.08rem);
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #f1f5f9;
+  text-shadow: 0 0 20px rgba(96, 165, 250, 0.55), 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+.ygo-spell-msg__giphy {
+  width: 100%;
+  max-width: min(280px, 78vw);
+  margin: 0 auto;
+}
+
+.ygo-spell-msg__giphy-ratio {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #000;
+}
+
+.ygo-spell-msg__giphy-ratio iframe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.ygo-spell-msg__credit {
+  margin: 8px 0 0;
+  font-size: 0.62rem;
+}
+
+.ygo-spell-msg__credit a {
+  color: #94a3b8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ygo-spell-msg__credit a:hover {
+  color: #cbd5e1;
+}
+
+.ygo-spell-msg.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ygo-spell-msg[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 520px) {
+  .ygo-focus-anchor {
+    width: 180px;
+    height: 262px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ygo-deck-btn,
+  .ygo-flip-card,
+  .ygo-spell-burst,
+  .ygo-spell-aura,
+  .ygo-spell-msg,
+  .ygo-spell-flash,
+  .ygo-deal-card,
+  .ygo-info-card,
+  .ygo-overlay-deck-return {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .ygo-spell-overlay.is-dismissing .ygo-spell-dim,
+  .ygo-spell-overlay.is-dismissing .ygo-focus-anchor,
+  .ygo-spell-overlay.is-dismissing .ygo-spell-msg {
+    transition-duration: 0.01ms !important;
+  }
+}
