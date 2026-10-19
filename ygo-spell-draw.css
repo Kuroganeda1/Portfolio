@@ -722,3 +722,15 @@ body.ygo-bio-reveal .ygo-hand {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Larger bio cards with concise copy, including on small screens. */
+.ygo-spell-section .ygo-spell-intro{font-size:1.05rem;max-width:60ch}
+.ygo-hand{gap:18px;flex-basis:300px;min-width:0}
+.ygo-info-card{width:min(100%,300px);flex:1 1 240px;min-height:240px}
+.ygo-info-card__top{padding:16px}
+.ygo-info-card__type{font-size:.75rem}
+.ygo-info-card__name{font-size:1.2rem;line-height:1.3}
+.ygo-info-card__text{padding:16px;font-size:1.05rem;line-height:1.6}
+.ygo-info-card__art{height:24px}
+.ygo-deck-label{font-size:1rem;color:var(--accent1)}
+@media(max-width:520px){.ygo-hand{flex-basis:100%}.ygo-info-card{flex-basis:100%}}

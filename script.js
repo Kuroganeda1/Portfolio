@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (popupCard) {
       const inner = popupCard.querySelector(".ygo-inner");
       const video = popupCard.querySelector(".proj-video");
-      inner.classList.remove("flipped");
+      // Keep the revealed card and its accessibility state in sync.
       if (video) video.pause();
       popupCard = null;
     }
@@ -89,52 +89,41 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape" && popup && popup.classList.contains("is-open")) closePopup();
   });
 
-  // Manual flip: click to flip, or (if flipped + demo) open popup
+  // Keep flip controls separate from links and demo actions.
   document.querySelectorAll(".ygo-card").forEach((card) => {
     const inner = card.querySelector(".ygo-inner");
+    const front = card.querySelector(".ygo-front");
+    const button = card.querySelector(".card-flip");
     const video = card.querySelector(".proj-video");
-    function syncVideo() {
-      if (!video) return;
-      if (inner.classList.contains("flipped")) {
-        video.play().catch(() => {});
-      } else {
-        video.pause();
+    const name = card.querySelector("h3").textContent;
+    front.inert = true;
+    front.setAttribute("aria-hidden", "true");
+    button.addEventListener("click", () => {
+      const revealed = inner.classList.toggle("flipped");
+      front.inert = !revealed;
+      front.setAttribute("aria-hidden", String(!revealed));
+      button.setAttribute("aria-pressed", String(revealed));
+      button.setAttribute("aria-label", `${revealed ? "Hide" : "Reveal"} ${name}`);
+      button.textContent = revealed ? "Flip back ↶" : "Reveal project ↗";
+      if (video) {
+        if (revealed) video.play().catch(() => {});
+        else video.pause();
       }
-    }
-    card.addEventListener("click", (e) => {
-      if (e.target.closest(".project-link") || e.target.closest(".view-btn")) return;
-      const isFlipped = inner.classList.contains("flipped");
-      const isDemo = card.querySelector(".project-demo");
-      if (isFlipped && isDemo) {
-        openPopup(card);
-        return;
-      }
-      inner.classList.toggle("flipped");
-      syncVideo();
     });
-    card.setAttribute("tabindex", "0");
-    card.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        const isFlipped = inner.classList.contains("flipped");
-        const isDemo = card.querySelector(".project-demo");
-        if (isFlipped && isDemo) {
+    card.querySelector(".ygo-back").addEventListener("click", () => button.click());
+    const demo = card.querySelector(".project-demo");
+    if (demo) {
+      demo.tabIndex = 0;
+      demo.setAttribute("role", "button");
+      demo.setAttribute("aria-label", `Open ${name} demo`);
+      demo.addEventListener("click", () => openPopup(card));
+      demo.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
           openPopup(card);
-          return;
         }
-        inner.classList.toggle("flipped");
-        syncVideo();
-      }
-    });
-  });
-
-  document.querySelectorAll(".view-btn").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const a = btn.closest(".project-link");
-      if (a && a.href) window.open(a.href, "_blank", "noopener");
-    });
+      });
+    }
   });
 
   // mobile nav toggle

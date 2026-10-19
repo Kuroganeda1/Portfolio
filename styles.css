@@ -375,3 +375,29 @@ small{font-size:.85rem}
   .vinyl-player--playing .vinyl-player__glow{animation:none}
   .vinyl-player__disc-btn{transition:none}
 }
+
+/* Bold, readable portfolio palette and full-size project cards. */
+:root{--bg:#24105a;--muted:#eee5ff;--accent1:#ffe45e;--accent2:#ff9a8b}
+html{background:var(--bg)}
+body::before{background:linear-gradient(135deg,#461b91 0%,#24105a 48%,#8d294e 100%);opacity:1;filter:none}
+body::after{background:radial-gradient(ellipse at 95% 5%,rgba(255,114,94,.35),transparent 55%)}
+.site-header{background:rgba(36,16,90,.94);border-bottom:1px solid #ffffff25}
+.section-title{font-size:1.8rem}
+.lead,.section-intro,.contact p{font-size:1.1rem;line-height:1.7}
+.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:32px 24px;align-items:start}
+.card.reveal{max-width:280px;height:auto;box-shadow:none}
+.ygo-card{width:100%;height:auto;cursor:pointer}
+.ygo-inner{height:auto;aspect-ratio:3/4}
+.ygo-front,.ygo-back{-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.ygo-front{transform:translateZ(1px)}
+.ygo-back{transform:rotateY(180deg) translateZ(1px);display:flex;align-items:flex-end;padding:16px}
+.card-back-label{font-size:1.2rem;font-weight:800;background:#24105aef;color:#fff;padding:10px;border-radius:8px;width:100%}
+.card-flip{display:block;width:100%;margin-top:12px;padding:12px 16px;border:1px solid #ffe45e;border-radius:10px;background:#ffe45e;color:#24105a;font:inherit;font-weight:800;cursor:pointer}
+.card-flip:focus-visible,.project-link:focus-visible,.project-demo:focus-visible{outline:3px solid #ff9a8b;outline-offset:4px}
+.proj-overlay{padding:18px;gap:10px;background:linear-gradient(to top,#130b2bf5 0%,#130b2bd9 40%,transparent 100%)}
+.proj-overlay h3{font-size:1.35rem}
+.ygo-front .project-summary{font-size:1rem;line-height:1.45;color:#fff}
+.tag{font-size:.8rem;padding:4px 8px}
+.view-btn,.demo-label{font-size:.95rem;color:#fff}
+.view-btn{color:#24105a;padding:8px 12px}
+@media(prefers-reduced-motion:reduce){.ygo-inner,.card.reveal{transition:none}html{scroll-behavior:auto}}

@@ -82,6 +82,8 @@ document.addEventListener("DOMContentLoaded", () => {
       from_name: fromName && fromName.value ? fromName.value.trim() : "",
       from_email: fromEmail && fromEmail.value ? fromEmail.value.trim() : "",
       message: message && message.value ? message.value.trim() : "",
+      to_email: "titus.adesina@gmail.com",
+      reply_to: fromEmail && fromEmail.value ? fromEmail.value.trim() : "",
     };
 
     if (submitBtn) {

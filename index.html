@@ -60,7 +60,7 @@
                I am interested in the areas where technology, finance, and human behavior overlap.
                 I hope to create solutions not only useful, but also thoughtfully designed, accessible, and effective.
             </p>
-            <button type="button" class="cta js-open-email">Email me</button>
+            <a class="cta" href="mailto:titus.adesina@gmail.com">Email me</a>
           </div>
           <div class="hero-art">
             <div class="hero-photo-wrap">
@@ -82,10 +82,8 @@
         <div class="container">
           <h2 class="section-title" id="about-heading">About</h2>
           <p class="ygo-spell-intro">
-            Click the deck — bio cards deal beside it, then the spell card flips to a
-            <strong>GIPHY</strong> clip. After a moment it fades so you can read the cards.
-            Press <kbd>Esc</kbd> or click the dimmed area to skip ahead; click the deck again to
-            stack and replay.
+            Draw the main deck to meet me. Click it again to put the cards away.
+            Press <kbd>Esc</kbd> to skip the animation.
           </p>
           <div class="ygo-spell-field" id="ygo-spell-field">
             <div class="ygo-deck-column">
@@ -120,12 +118,7 @@
                 <div class="ygo-info-card__art" aria-hidden="true"></div>
                 <div class="ygo-info-card__text">
                   <p>
-                    Through high school and college I’ve built strong programming skills:
-                    <strong>HTML, CSS, JavaScript, Python, React, React Native, Java</strong>,
-                    object-oriented programming, and mobile app development—starting early in
-                    high school. Along the way: practical experience in web development, mobile
-                    apps, cybersecurity, and more through coursework and the
-                    <strong>Towson University cybersecurity club</strong>.
+                    <strong>Web &amp; mobile development</strong> with JavaScript, React, React Native, Python, and Java. Exploring security with Towson’s cybersecurity club.
                   </p>
                 </div>
               </article>
@@ -139,11 +132,7 @@
                 </header>
                 <div class="ygo-info-card__text">
                   <p>
-                    Beyond the classroom: competitive internships and programs with
-                    <strong>Google’s CSSI</strong>, <strong>Code Next</strong>,
-                    <strong>First Generation Investors</strong>, <strong>All Star Code</strong>,
-                    and more. I’ve grown not only technically but in
-                    <strong>collaboration, flexibility, and critical thinking</strong>.
+                    Trained with <strong>Google CSSI, Code Next, All Star Code</strong>, and First Generation Investors. Built technical skills through hands-on teamwork.
                   </p>
                 </div>
               </article>
@@ -157,11 +146,7 @@
                 </header>
                 <div class="ygo-info-card__text">
                   <p>
-                    <strong>Team facilitator</strong> with the
-                    <strong>RTX × NAF Future Ready Engineers</strong> program—guiding teams
-                    through project development. It was an honor to be asked back for a
-                    <strong>second term</strong>, reflecting a real commitment to mentorship
-                    and leadership in a technology context.
+                    <strong>Two terms as a team facilitator</strong> with RTX × NAF Future Ready Engineers, mentoring teams through project development.
                   </p>
                 </div>
               </article>
@@ -175,15 +160,9 @@
                 </header>
                 <div class="ygo-info-card__text">
                   <p>
-                    I’m pursuing a degree in <strong>Philosophy</strong> while keeping a solid
-                    <strong>computer science</strong> foundation—sharpening analytical thinking,
-                    problem-solving, and how technology sits in society. I’m growing as both a
-                    developer and a thinker, focused on <strong>impactful, user-centric</strong>
-                    solutions while continuing to level up in software and new technologies.
+                    Studying <strong>Philosophy</strong> with a computer science foundation. Building thoughtful, accessible tools at the intersection of technology and human behavior.
                   </p>
-                  <p>
-                    <a href="mailto:titus.adesina@gmail.com">titus.adesina@gmail.com</a>
-                  </p>
+
                 </div>
               </article>
             </div>
@@ -195,7 +174,7 @@
         <div class="container">
           <h2 class="section-title">Projects</h2>
           <p class="section-intro">
-            Click a card to flip it and view the project.
+            Flip a card to explore a project, then open its demo.
           </p>
           <div class="grid" id="projectsGrid">
             <article class="card reveal ygo" data-index="0">
@@ -215,6 +194,7 @@
                       />
                       <div class="proj-overlay">
                         <h3>Pantry Tracker</h3>
+                        <p class="project-summary">Track pantry items and keep your inventory organized.</p>
                         <div class="tags">
                           <span class="tag">React</span
                           ><span class="tag">Vercel</span>
@@ -223,8 +203,9 @@
                       </div>
                     </a>
                   </div>
-                  <div class="ygo-back" aria-hidden="true"></div>
+                  <div class="ygo-back" aria-hidden="true"><span class="card-back-label">Pantry Tracker</span></div>
                 </div>
+                <button type="button" class="card-flip" aria-pressed="false" aria-label="Reveal Pantry Tracker">Reveal project ↗</button>
               </div>
             </article>
             <article class="card reveal ygo" data-index="1">
@@ -239,6 +220,7 @@
                       />
                       <div class="proj-overlay">
                         <h3>2D Java Game</h3>
+                        <p class="project-summary">A 2D game built in Java.</p>
                         <div class="tags">
                           <span class="tag">Java</span
                           ><span class="tag">GameDev</span>
@@ -247,8 +229,9 @@
                       </div>
                     </div>
                   </div>
-                  <div class="ygo-back" aria-hidden="true"></div>
+                  <div class="ygo-back" aria-hidden="true"><span class="card-back-label">2D Java Game</span></div>
                 </div>
+                <button type="button" class="card-flip" aria-pressed="false" aria-label="Reveal 2D Java Game">Reveal project ↗</button>
               </div>
             </article>
             <article class="card reveal ygo" data-index="2">
@@ -263,6 +246,7 @@
                       />
                       <div class="proj-overlay">
                         <h3>Spotify Chatbot</h3>
+                        <p class="project-summary">A chatbot for Spotify customer support.</p>
                         <div class="tags">
                           <span class="tag">Node.js</span
                           ><span class="tag">API</span>
@@ -271,8 +255,9 @@
                       </div>
                     </div>
                   </div>
-                  <div class="ygo-back" aria-hidden="true"></div>
+                  <div class="ygo-back" aria-hidden="true"><span class="card-back-label">Spotify Chatbot</span></div>
                 </div>
+                <button type="button" class="card-flip" aria-pressed="false" aria-label="Reveal Spotify Chatbot">Reveal project ↗</button>
               </div>
             </article>
             <article class="card reveal ygo" data-index="3">
@@ -292,6 +277,7 @@
                       ></video>
                       <div class="proj-overlay">
                         <h3>StudyWise</h3>
+                        <p class="project-summary">A mobile study app — watch the walkthrough.</p>
                         <div class="tags">
                           <span class="tag">Mobile</span
                           ><span class="tag">Demo</span>
@@ -300,8 +286,9 @@
                       </div>
                     </div>
                   </div>
-                  <div class="ygo-back" aria-hidden="true"></div>
+                  <div class="ygo-back" aria-hidden="true"><span class="card-back-label">StudyWise</span></div>
                 </div>
+                <button type="button" class="card-flip" aria-pressed="false" aria-label="Reveal StudyWise">Reveal project ↗</button>
               </div>
             </article>
           </div>
@@ -313,11 +300,11 @@
           <h2 class="section-title">Contact</h2>
           <p>
             Best way to reach me is
-            <a href="#" class="contact-email-link js-open-email"
+            <a href="mailto:titus.adesina@gmail.com" class="contact-email-link"
               >titus.adesina@gmail.com</a
             >. I’m open to project collabs, research ideas, or just a chat.
           </p>
-          <button type="button" class="cta js-open-email">Email me</button>
+          <a class="cta" href="mailto:titus.adesina@gmail.com">Email me</a>
         </div>
       </section>
     </main>
@@ -460,7 +447,7 @@
           Send a note from the site. I’ll reply at
           <span class="email-modal__addr">titus.adesina@gmail.com</span>.
         </p>
-        <form id="email-contact-form" class="email-form" novalidate>
+        <form id="email-contact-form" class="email-form">
           <label class="email-form__label">
             <span class="email-form__ltext">Your name</span>
             <input
