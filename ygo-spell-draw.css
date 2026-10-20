@@ -516,7 +516,7 @@ body.ygo-bio-reveal .ygo-hand {
   transform-style: preserve-3d;
   transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 10px;
-  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.55));
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
 }
 
 .ygo-flip-card.is-flipped {
@@ -528,18 +528,9 @@ body.ygo-bio-reveal .ygo-hand {
 }
 
 @keyframes ygo-card-pulse {
-  0% {
-    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.55))
-      drop-shadow(0 0 0 transparent);
-  }
-  45% {
-    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.55))
-      drop-shadow(0 0 32px rgba(110, 231, 183, 0.65));
-  }
-  100% {
-    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.55))
-      drop-shadow(0 0 14px rgba(59, 130, 246, 0.35));
-  }
+  0% { box-shadow: 0 20px 50px #0008, 0 0 0 transparent; }
+  45% { box-shadow: 0 20px 50px #0008, 0 0 32px #6ee7b7a6; }
+  100% { box-shadow: 0 20px 50px #0008, 0 0 14px #3b82f659; }
 }
 
 .ygo-flip-face {

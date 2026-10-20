@@ -134,6 +134,13 @@
 
     /** Vector from each card’s layout center to deck center (for stack transform). */
     function setStackOffsets() {
+      // Measure the natural layout, never the translated/scaled stack.
+      var saved = handCards.map(function (card) {
+        var state = { transform: card.style.transform, transition: card.style.transition };
+        card.style.transition = "none";
+        card.style.transform = "none";
+        return state;
+      });
       var deckRect = deckBtn.getBoundingClientRect();
       var dcx = deckRect.left + deckRect.width / 2;
       var dcy = deckRect.top + deckRect.height / 2;
@@ -145,6 +152,9 @@
         card.style.setProperty("--ty", dcy - cy + "px");
         card.style.setProperty("--s", prefersReducedMotion() ? "0.42" : "0.34");
       });
+      handCards.forEach(function (card, i) { card.style.transform = saved[i].transform; });
+      void hand.offsetHeight;
+      handCards.forEach(function (card, i) { card.style.transition = saved[i].transition; });
     }
 
     /** First paint: measure in “dealt” layout, then stack on deck without flash. */
@@ -165,6 +175,8 @@
       });
       hand.classList.remove("ygo-hand--init");
       hand.setAttribute("aria-hidden", "true");
+      hand.inert = true;
+      deckBtn.setAttribute("aria-expanded", "false");
     }
 
     function dealHandOut() {
@@ -172,6 +184,8 @@
       var rm = prefersReducedMotion();
       var t = getTiming();
       hand.setAttribute("aria-hidden", "false");
+      hand.inert = false;
+      deckBtn.setAttribute("aria-expanded", "true");
       handCards.forEach(function (c, i) {
         window.setTimeout(function () {
           c.classList.remove("ygo-info-card--stacked");
@@ -373,6 +387,7 @@
       dismissingSpell = false;
       busy = false;
       deckBtn.disabled = false;
+      deckBtn.focus({ preventScroll: true });
 
       var aboutEl = document.getElementById("about");
       if (aboutEl && !rm) {
@@ -392,10 +407,12 @@
       var t = getTiming();
       var rm = prefersReducedMotion();
       var handTime =
-        t.handStagger * Math.max(0, handCards.length - 1) + (rm ? 80 : 520);
+        t.handStagger * Math.max(0, handCards.length - 1) + (rm ? 80 : 720);
       await wait(handTime);
 
       hand.setAttribute("aria-hidden", "true");
+      hand.inert = true;
+      deckBtn.setAttribute("aria-expanded", "false");
       bioVisible = false;
       busy = false;
       deckBtn.disabled = false;
@@ -496,12 +513,7 @@
 
     deckBtn.addEventListener("click", onDeckActivate);
 
-    deckBtn.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        onDeckActivate();
-      }
-    });
+    // Native button clicks already support Enter and Space.
 
     if (returnBtn) {
       returnBtn.addEventListener("click", function (e) {
