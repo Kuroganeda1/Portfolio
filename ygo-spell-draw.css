@@ -725,3 +725,6 @@ body.ygo-bio-reveal .ygo-hand {
 .ygo-info-card__art{height:24px}
 .ygo-deck-label{font-size:1rem;color:var(--accent1)}
 @media(max-width:520px){.ygo-hand{flex-basis:100%}.ygo-info-card{flex-basis:100%}}
+
+/* A closed deck must not reserve several rows of invisible bio cards. */
+.ygo-hand[aria-hidden="true"]{height:0;min-height:0;overflow:hidden;visibility:hidden}
